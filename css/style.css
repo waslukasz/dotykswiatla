@@ -1,0 +1,559 @@
+:root {
+  --color-cream: #faf7f2;
+  --color-warm-white: #fffdfb;
+  --color-sand: #e8e2d9;
+  --color-taupe: #b5a99a;
+  --color-olive: #7a8b6e;
+  --color-olive-dark: #5c6b52;
+  --color-charcoal: #2d2d2d;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Outfit", sans-serif;
+  --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-glow {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(122, 139, 110, 0.08) 0%,
+    rgba(250, 247, 242, 0) 70%
+  );
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s,
+    height 0.3s;
+}
+
+/* NAVIGATION SYSTEM */
+.nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.5s ease;
+}
+
+.location-topbar {
+  background-color: var(--color-warm-white);
+  border-bottom: 1px solid rgba(181, 169, 154, 0.2);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--color-taupe);
+}
+
+header {
+  width: 100%;
+  padding: 25px 5%;
+  transition: var(--transition);
+}
+
+/* Stan po przescrollowaniu */
+.nav-wrapper.scrolled {
+  transform: translateY(-40px); /* Ukrywa topbar */
+}
+
+.nav-wrapper.scrolled header {
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 5%;
+  border-bottom: 1px solid rgba(122, 139, 110, 0.1);
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  color: var(--color-olive-dark);
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-charcoal);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--color-olive);
+}
+
+.header-cta {
+  background: var(--color-olive);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: var(--transition);
+}
+
+/* HERO SECTION */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 5%;
+}
+
+.hero-content {
+  max-width: 900px;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-badge {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--color-olive);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  line-height: 1.2; /* Zwiększono z 1.1, aby dać oddech literom */
+  font-weight: 300;
+  margin-bottom: 30px;
+  padding: 10px 0; /* Dodatkowa przestrzeń dla bezpiecznego renderowania gradientu */
+}
+
+.hero h1 em {
+  font-style: italic;
+  display: inline-block;
+  padding-right: 5px; /* Zapobiega ucinaniu końcówek pochylonych liter */
+
+  /* Tworzymy gradient, który będzie "przepływał" przez tekst */
+  background: linear-gradient(
+    to right,
+    var(--color-olive) 0%,
+    #b8c5a9 25%,
+    var(--color-olive-dark) 50%,
+    #b8c5a9 75%,
+    var(--color-olive) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Łączymy dwie animacje: ruch gradientu i pulsowanie poświaty */
+  animation:
+    shimmer 6s linear infinite,
+    softGlow 4s ease-in-out infinite alternate;
+
+  /* Delikatne rozmycie krawędzi dla efektu "miękkości" */
+  filter: drop-shadow(0 0 1px rgba(122, 139, 110, 0.1));
+}
+
+/* Animacja przesuwania światła po tekście */
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Animacja delikatnej, "oddychającej" poświaty wokół liter */
+@keyframes softGlow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(122, 139, 110, 0.2));
+    opacity: 0.9;
+  }
+  100% {
+    filter: drop-shadow(0 0 15px rgba(122, 139, 110, 0.5));
+    opacity: 1;
+  }
+}
+
+/* 2. Premium Description - Styl "High-End Beauty" */
+.hero-description {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; /* Mniejszy font w premium wygląda bardziej ekskluzywnie */
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.5em; /* Bardzo szerokie rozstawienie liter to klasyka marek premium */
+  color: var(--color-taupe); /* Subtelniejszy kolor niż czarny */
+  margin-bottom: 60px;
+  opacity: 1;
+}
+
+/* ELEGANCJA PREMIUM - Kontener */
+.hero-cta-group {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+/* PRZYCISK GŁÓWNY - Świetlisty Monolit */
+.btn-primary {
+  padding: 20px 48px;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  background: var(--color-olive);
+  color: white;
+  border: 1px solid var(--color-olive);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(122, 139, 110, 0.1);
+}
+
+.btn-primary:hover {
+  background: var(--color-olive-dark);
+  border-color: var(--color-olive-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(122, 139, 110, 0.2);
+}
+
+/* Efekt "Przejścia Światła" */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left 0.8s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* PRZYCISK WTÓRNY - Z fragmentem linii */
+.btn-secondary {
+  background: none;
+  border: none;
+  padding: 12px 0;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-charcoal);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.4s ease;
+  display: inline-block; /* Zapewnia stabilność szerokości */
+}
+
+/* Linia: startuje jako fragment (15%), rozszerza się na 100% */
+.btn-secondary::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-olive);
+  /* Kluczowe zmiany: */
+  transform: scaleX(0.15); /* Widoczny fragment linii na starcie */
+  transform-origin: center; /* Rozszerzanie symetryczne od środka */
+  transition:
+    transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    background-color 0.4s ease;
+  opacity: 0.6; /* Delikatniejszy wygląd przed hoverem */
+}
+
+.btn-secondary:hover {
+  color: var(--color-olive-dark);
+}
+
+.btn-secondary:hover::after {
+  transform: scaleX(1); /* Pełna szerokość */
+  opacity: 1;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+/* ORBS - Ustawienia bazowe */
+.hero-orb {
+  position: absolute;
+  filter: blur(100px); /* Zwiększony blur dla miękkości */
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.4;
+  pointer-events: none; /* Aby kulki nie blokowały kliknięć w przyciski */
+}
+
+/* Kula 1 - Pływanie po przekątnej */
+.hero-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--color-sand);
+  top: 10%;
+  right: -5%;
+  animation: orbFloatMain 25s ease-in-out infinite alternate;
+}
+
+/* Kula 2 - Ruch po elipsie */
+.hero-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-olive);
+  bottom: 5%;
+  left: 5%;
+  animation: orbFloatSecondary 30s ease-in-out infinite alternate;
+}
+
+/* Nowe, bardziej płynne animacje */
+@keyframes orbFloatMain {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-5vw, 10vh) scale(1.1);
+  }
+  66% {
+    transform: translate(-15vw, -5vh) scale(0.9);
+  }
+  100% {
+    transform: translate(-10vw, 5vh) scale(1);
+  }
+}
+
+@keyframes orbFloatSecondary {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(10vw, -15vh) rotate(90deg) scale(1.2);
+  }
+  100% {
+    transform: translate(20vw, -5vh) rotate(180deg) scale(1);
+  }
+}
+
+/* PACKAGES */
+.packages {
+  padding: 120px 5%;
+  background: var(--color-warm-white);
+}
+.packages-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.packages-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.section-label {
+  color: var(--color-olive);
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.packages-header h2 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 300;
+}
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.package-card {
+  background: var(--color-cream);
+  padding: 40px;
+  border-radius: 30px;
+  border: 1px solid rgba(181, 169, 154, 0.2);
+  transition: var(--transition);
+  /* KLUCZOWE: */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.package-card.featured {
+  background: var(--color-charcoal);
+  color: white;
+}
+.package-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--color-olive);
+  color: white;
+  font-size: 0.65rem;
+  padding: 6px 15px;
+  border-radius: 20px;
+  z-index: 10; /* Aby był nad tłem karty */
+}
+.package-price {
+  margin: 20px 0;
+  font-family: var(--font-serif);
+}
+.package-price .amount {
+  font-size: 2.5rem;
+}
+
+.package-cta {
+  width: 100%;
+  padding: 15px;
+  border-radius: 30px;
+  border: 1px solid var(--color-olive);
+  background: transparent;
+  color: var(--color-olive);
+  cursor: pointer;
+}
+
+.package-card.featured .package-cta {
+  background: var(--color-olive);
+  color: white;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+  }
+}
+
+/* Wskaźnik przewijania */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
+}
+
+/* Tekst nad linią */
+.scroll-text {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--color-olive-dark);
+  font-weight: 300;
+}
+
+/* Pionowa linia */
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: rgba(122, 139, 110, 0.2); /* Bardzo jasna oliwka */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animowany impuls światła na linii */
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-olive),
+    transparent
+  );
+  animation: scroll-flow 3s cubic-bezier(0.15, 0, 0.45, 1) infinite;
+}
+
+@keyframes scroll-flow {
+  0% {
+    top: -40%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Zniknięcie przy przewijaniu (opcjonalne, wymaga JS lub prostej interakcji) */
+.scroll-indicator.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+::selection {
+  background-color: var(--color-olive); /* Twoja oliwka */
+  color: white;
+}

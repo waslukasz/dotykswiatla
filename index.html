@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dotyk Światła | Medycyna Naturalna i Fizjoterapia</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="cursor-glow"></div>
+
+    <div class="nav-wrapper" id="main-nav">
+      <div class="location-topbar">
+        <span>WITÓW 139 • MEDYCYNA NATURALNA</span>
+      </div>
+      <header>
+        <div class="header-inner">
+          <div class="logo">DOTYK ŚWIATŁA</div>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="#about">O nas</a></li>
+              <li><a href="#services">Zabiegi</a></li>
+              <li><a href="#packages">Cennik</a></li>
+            </ul>
+          </nav>
+          <button class="header-cta" onclick="handleAction('Rezerwacja')">
+            Zarezerwuj
+          </button>
+        </div>
+      </header>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-content">
+          <div class="hero-badge">Harmonia Duszy i Ciała</div>
+          <h1>Odnajdź swój <em>wewnętrzny blask</em></h1>
+          <p class="hero-description">
+            Miejsce gdzie Twoje ciało odzyskuje głos, a umysł spokój.<br />
+            Fizjoterapia i holistyczne uzdrawianie.
+          </p>
+
+          <div class="hero-cta-group">
+            <button onclick="handleAction('Regeneracja')" class="btn-primary">
+              Zacznij swoją regenerację
+            </button>
+            <a href="#services" class="btn-secondary"> Poznaj nasze rytuały </a>
+          </div>
+
+          <div class="scroll-indicator">
+            <span class="scroll-text">Przesuń</span>
+            <div class="scroll-line"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="packages" class="packages">
+        <div class="packages-inner">
+          <div class="packages-header">
+            <span class="section-label">Cennik</span>
+            <h2>Inwestycja w Siebie</h2>
+          </div>
+          <div class="packages-grid">
+            <div class="package-card">
+              <h3>Konsultacja</h3>
+              <div class="package-price">
+                <span class="amount">150</span><span class="currency">PLN</span>
+              </div>
+              <p>
+                Analiza stanu zdrowia i dobór spersonalizowanej ścieżki terapii.
+              </p>
+              <button class="package-cta" onclick="handleAction('Konsultacja')">
+                Wybieram
+              </button>
+            </div>
+            <div class="package-card featured">
+              <div class="package-badge">Polecane</div>
+
+              <h3>Pakiet Terapii</h3>
+              <div class="package-price">
+                <span class="amount">750</span>
+                <span class="currency">PLN</span>
+              </div>
+              <p>
+                Seria 5 intensywnych spotkań dedykowanych głębokiej regeneracji.
+              </p>
+              <button
+                class="package-cta"
+                onclick="handleAction('Pakiet Terapii')"
+              >
+                Wybieram
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
