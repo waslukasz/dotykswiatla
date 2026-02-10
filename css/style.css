@@ -16,6 +16,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -53,53 +54,72 @@ body::before {
   position: fixed;
   pointer-events: none;
   z-index: 0;
-  transform: translate(-50%, -50%);
   transition:
     width 0.3s,
     height 0.3s;
 }
 
-/* NAVIGATION SYSTEM */
+/* --- NAVIGATION SYSTEM --- */
 .nav-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: transform 0.5s ease;
+  padding: 20px 0;
+  transition:
+    padding 0.4s ease,
+    background 0.4s ease; /* Skupiamy się na konkretach */
+  backface-visibility: hidden;
 }
 
 .location-topbar {
-  background-color: var(--color-warm-white);
-  border-bottom: 1px solid rgba(181, 169, 154, 0.2);
   text-align: center;
-  padding: 10px 0;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
+  padding-bottom: 15px;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
   color: var(--color-taupe);
+  transition: all 0.3s ease;
+  opacity: 1;
+  height: auto;
 }
 
 header {
-  width: 100%;
-  padding: 25px 5%;
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  /* Zmieniamy padding na stały, by uniknąć zmiany szerokości wewnętrznej */
+  padding: 12px 30px;
+  border-radius: 100px;
   transition: var(--transition);
+  border: 1px solid transparent;
+  background: transparent;
 }
 
-/* Stan po przescrollowaniu */
+/* SCROLLED STATE */
 .nav-wrapper.scrolled {
-  transform: translateY(-40px); /* Ukrywa topbar */
+  padding: 10px 0; /* Mniejszy padding zamiast translateY */
+}
+
+.nav-wrapper.scrolled .location-topbar {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  pointer-events: none; /* Żeby nie dało się kliknąć w coś niewidocznego */
+  overflow: hidden;
 }
 
 .nav-wrapper.scrolled header {
-  background: rgba(250, 247, 242, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 15px 5%;
-  border-bottom: 1px solid rgba(122, 139, 110, 0.1);
+  background: rgba(255, 253, 251, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Padding teraz jest taki sam jak w bazowym headerze */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(122, 139, 110, 0.1);
 }
 
 .header-inner {
-  max-width: 1400px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,30 +127,53 @@ header {
 
 .logo {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   letter-spacing: 3px;
   color: var(--color-olive-dark);
+  transition: var(--transition);
+}
+
+.logo em {
+  font-weight: 300;
+  font-style: italic;
+  opacity: 0.8;
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
+  gap: 35px;
   list-style: none;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--color-charcoal);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  opacity: 0.7;
-  transition: 0.3s;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--color-olive);
+  transition: var(--transition);
+  transform: translateX(-50%);
 }
 
 .nav-links a:hover {
   opacity: 1;
-  color: var(--color-olive);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .header-cta {
@@ -141,10 +184,17 @@ header {
   border-radius: 50px;
   cursor: pointer;
   font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
   transition: var(--transition);
 }
 
-/* HERO SECTION */
+.header-cta:hover {
+  background: var(--color-olive-dark);
+  transform: scale(1.05);
+}
+
+/* --- HERO SECTION --- */
 .hero {
   height: 100vh;
   display: flex;
@@ -171,18 +221,15 @@ header {
 .hero h1 {
   font-family: var(--font-serif);
   font-size: clamp(2.5rem, 8vw, 5.5rem);
-  line-height: 1.2; /* Zwiększono z 1.1, aby dać oddech literom */
+  line-height: 1.2;
   font-weight: 300;
   margin-bottom: 30px;
-  padding: 10px 0; /* Dodatkowa przestrzeń dla bezpiecznego renderowania gradientu */
 }
 
 .hero h1 em {
   font-style: italic;
   display: inline-block;
-  padding-right: 5px; /* Zapobiega ucinaniu końcówek pochylonych liter */
-
-  /* Tworzymy gradient, który będzie "przepływał" przez tekst */
+  padding-right: 5px;
   background: linear-gradient(
     to right,
     var(--color-olive) 0%,
@@ -194,24 +241,16 @@ header {
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* Łączymy dwie animacje: ruch gradientu i pulsowanie poświaty */
   animation:
     shimmer 6s linear infinite,
     softGlow 4s ease-in-out infinite alternate;
-
-  /* Delikatne rozmycie krawędzi dla efektu "miękkości" */
-  filter: drop-shadow(0 0 1px rgba(122, 139, 110, 0.1));
 }
 
-/* Animacja przesuwania światła po tekście */
 @keyframes shimmer {
   to {
     background-position: 200% center;
   }
 }
-
-/* Animacja delikatnej, "oddychającej" poświaty wokół liter */
 @keyframes softGlow {
   0% {
     filter: drop-shadow(0 0 5px rgba(122, 139, 110, 0.2));
@@ -223,33 +262,25 @@ header {
   }
 }
 
-/* 2. Premium Description - Styl "High-End Beauty" */
 .hero-description {
-  font-family: var(--font-sans);
-  font-size: 0.75rem; /* Mniejszy font w premium wygląda bardziej ekskluzywnie */
+  font-size: 0.75rem;
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.5em; /* Bardzo szerokie rozstawienie liter to klasyka marek premium */
-  color: var(--color-taupe); /* Subtelniejszy kolor niż czarny */
+  letter-spacing: 0.5em;
+  color: var(--color-taupe);
   margin-bottom: 60px;
-  opacity: 1;
 }
 
-/* ELEGANCJA PREMIUM - Kontener */
 .hero-cta-group {
   display: flex;
   gap: 40px;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
 }
 
-/* PRZYCISK GŁÓWNY - Świetlisty Monolit */
 .btn-primary {
   padding: 20px 48px;
-  border-radius: 0;
   font-size: 0.85rem;
-  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.25em;
   background: var(--color-olive);
@@ -257,57 +288,25 @@ header {
   border: 1px solid var(--color-olive);
   cursor: pointer;
   position: relative;
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: var(--transition);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(122, 139, 110, 0.1);
 }
 
 .btn-primary:hover {
   background: var(--color-olive-dark);
-  border-color: var(--color-olive-dark);
   transform: translateY(-2px);
-  box-shadow: 0 15px 40px rgba(122, 139, 110, 0.2);
 }
 
-/* Efekt "Przejścia Światła" */
-.btn-primary::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.15),
-    transparent
-  );
-  transition: left 0.8s ease;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
-/* PRZYCISK WTÓRNY - Z fragmentem linii */
 .btn-secondary {
-  background: none;
-  border: none;
-  padding: 12px 0;
   font-size: 0.85rem;
-  font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.25em;
   color: var(--color-charcoal);
-  cursor: pointer;
   position: relative;
-  transition: color 0.4s ease;
-  display: inline-block; /* Zapewnia stabilność szerokości */
+  padding: 12px 0;
 }
 
-/* Linia: startuje jako fragment (15%), rozszerza się na 100% */
 .btn-secondary::after {
   content: "";
   position: absolute;
@@ -316,42 +315,25 @@ header {
   width: 100%;
   height: 1px;
   background-color: var(--color-olive);
-  /* Kluczowe zmiany: */
-  transform: scaleX(0.15); /* Widoczny fragment linii na starcie */
-  transform-origin: center; /* Rozszerzanie symetryczne od środka */
-  transition:
-    transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-    background-color 0.4s ease;
-  opacity: 0.6; /* Delikatniejszy wygląd przed hoverem */
-}
-
-.btn-secondary:hover {
-  color: var(--color-olive-dark);
+  transform: scaleX(0.15);
+  transform-origin: center;
+  transition: var(--transition);
 }
 
 .btn-secondary:hover::after {
-  transform: scaleX(1); /* Pełna szerokość */
-  opacity: 1;
+  transform: scaleX(1);
 }
 
-/* Responsywność */
-@media (max-width: 768px) {
-  .hero-cta-group {
-    flex-direction: column;
-    gap: 24px;
-  }
-}
-/* ORBS - Ustawienia bazowe */
+/* --- ORBS --- */
 .hero-orb {
   position: absolute;
-  filter: blur(100px); /* Zwiększony blur dla miękkości */
+  filter: blur(100px);
   border-radius: 50%;
   z-index: 1;
-  opacity: 0.4;
-  pointer-events: none; /* Aby kulki nie blokowały kliknięć w przyciski */
+  opacity: 0.3;
+  pointer-events: none;
 }
 
-/* Kula 1 - Pływanie po przekątnej */
 .hero-orb-1 {
   width: 500px;
   height: 500px;
@@ -361,7 +343,6 @@ header {
   animation: orbFloatMain 25s ease-in-out infinite alternate;
 }
 
-/* Kula 2 - Ruch po elipsie */
 .hero-orb-2 {
   width: 400px;
   height: 400px;
@@ -371,39 +352,30 @@ header {
   animation: orbFloatSecondary 30s ease-in-out infinite alternate;
 }
 
-/* Nowe, bardziej płynne animacje */
 @keyframes orbFloatMain {
   0% {
     transform: translate(0, 0) scale(1);
   }
-  33% {
-    transform: translate(-5vw, 10vh) scale(1.1);
-  }
-  66% {
-    transform: translate(-15vw, -5vh) scale(0.9);
-  }
   100% {
-    transform: translate(-10vw, 5vh) scale(1);
+    transform: translate(-10vw, 5vh) scale(1.1);
   }
 }
 
 @keyframes orbFloatSecondary {
   0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate(10vw, -15vh) rotate(90deg) scale(1.2);
+    transform: translate(0, 0);
   }
   100% {
-    transform: translate(20vw, -5vh) rotate(180deg) scale(1);
+    transform: translate(15vw, -10vh);
   }
 }
 
-/* PACKAGES */
+/* --- PACKAGES --- */
 .packages {
   padding: 120px 5%;
   background: var(--color-warm-white);
 }
+
 .packages-inner {
   max-width: 1100px;
   margin: 0 auto;
@@ -435,11 +407,9 @@ header {
   border-radius: 30px;
   border: 1px solid rgba(181, 169, 154, 0.2);
   transition: var(--transition);
-  /* KLUCZOWE: */
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .package-card.featured {
@@ -455,8 +425,8 @@ header {
   font-size: 0.65rem;
   padding: 6px 15px;
   border-radius: 20px;
-  z-index: 10; /* Aby był nad tłem karty */
 }
+
 .package-price {
   margin: 20px 0;
   font-family: var(--font-serif);
@@ -466,6 +436,7 @@ header {
 }
 
 .package-cta {
+  margin-top: auto;
   width: 100%;
   padding: 15px;
   border-radius: 30px;
@@ -473,6 +444,7 @@ header {
   background: transparent;
   color: var(--color-olive);
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .package-card.featured .package-cta {
@@ -481,16 +453,7 @@ header {
   border: none;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .hero-cta-group {
-    flex-direction: column;
-  }
-}
-
-/* Wskaźnik przewijania */
+/* --- SCROLL INDICATOR --- */
 .scroll-indicator {
   position: absolute;
   bottom: 40px;
@@ -500,29 +463,22 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  opacity: 0.8;
   transition: opacity 0.5s ease;
 }
 
-/* Tekst nad linią */
 .scroll-text {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: var(--color-olive-dark);
-  font-weight: 300;
 }
-
-/* Pionowa linia */
 .scroll-line {
   width: 1px;
   height: 60px;
-  background: rgba(122, 139, 110, 0.2); /* Bardzo jasna oliwka */
+  background: rgba(122, 139, 110, 0.2);
   position: relative;
   overflow: hidden;
 }
-
-/* Animowany impuls światła na linii */
 .scroll-line::after {
   content: "";
   position: absolute;
@@ -536,7 +492,7 @@ header {
     var(--color-olive),
     transparent
   );
-  animation: scroll-flow 3s cubic-bezier(0.15, 0, 0.45, 1) infinite;
+  animation: scroll-flow 3s infinite;
 }
 
 @keyframes scroll-flow {
@@ -548,12 +504,39 @@ header {
   }
 }
 
-/* Zniknięcie przy przewijaniu (opcjonalne, wymaga JS lub prostej interakcji) */
-.scroll-indicator.fade-out {
-  opacity: 0;
-  pointer-events: none;
+@media (max-width: 768px) {
+  /* Zamiast display: none, zmniejszamy font i odstępy */
+  .nav-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .nav-links a {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  header {
+    width: 95%;
+    padding: 10px 20px;
+  }
+
+  .logo {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .header-cta {
+    display: none; /* Chonimy przycisk na bardzo małych ekranach, by nie ściskać menu */
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
+
 ::selection {
-  background-color: var(--color-olive); /* Twoja oliwka */
+  background: var(--color-olive);
   color: white;
 }
