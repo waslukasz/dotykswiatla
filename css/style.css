@@ -370,6 +370,105 @@ header {
   }
 }
 
+/* --- COMPACT VALUES BAR --- */
+.values-bar {
+  background-color: #f2ede4; /* Bardzo subtelne odcięcie od cream */
+  padding: 60px 0;
+  position: relative;
+  border-top: 1px solid rgba(122, 139, 110, 0.1);
+}
+
+.values-bar-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.values-title-box {
+  min-width: 180px;
+  border-right: 1px solid var(--color-olive);
+  padding-right: 30px;
+}
+
+.values-pre {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-olive);
+  margin-bottom: 8px;
+}
+
+.values-title-box h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.1;
+}
+
+.values-items {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.v-item {
+  flex: 1;
+}
+
+.v-item h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-olive-dark);
+  margin-bottom: 10px;
+}
+
+.v-item p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-taupe);
+  font-weight: 300;
+  margin: 0;
+}
+
+.v-divider {
+  width: 1px;
+  height: 50px;
+  background-color: var(--color-olive);
+  opacity: 0.15;
+  align-self: center;
+}
+
+/* Responsywność */
+@media (max-width: 1024px) {
+  .values-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .values-title-box {
+    border-right: none;
+    border-bottom: 1px solid var(--color-olive);
+    padding-right: 0;
+    padding-bottom: 20px;
+    width: 100%;
+  }
+  .values-items {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .v-divider {
+    display: none;
+  }
+}
+
 /* --- PACKAGES --- */
 .packages {
   padding: 120px 5%;
@@ -539,4 +638,145 @@ header {
 ::selection {
   background: var(--color-olive);
   color: white;
+}
+
+/* --- NOWE SEKCE --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.container-small {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Values */
+.values-section {
+  padding: 100px 0;
+  background: var(--color-warm-white);
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.value-number {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  color: var(--color-sand);
+  display: block;
+  margin-bottom: 20px;
+}
+.value-item h3 {
+  margin-bottom: 15px;
+  font-family: var(--font-serif);
+}
+
+/* About Split */
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  align-items: center;
+}
+.about-image-side {
+  padding: 40px;
+  position: relative;
+}
+.image-wrapper {
+  background: var(--color-sand);
+  height: 600px;
+  border-radius: 300px 300px 0 0;
+  position: relative;
+}
+.experience-badge {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  background: var(--color-olive);
+  color: white;
+  padding: 20px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.about-text-side {
+  padding: 100px;
+}
+.check-list {
+  list-style: none;
+  margin-top: 30px;
+}
+.check-list li::before {
+  content: "✓";
+  color: var(--color-olive);
+  margin-right: 15px;
+}
+
+/* FAQ */
+.faq-section {
+  padding: 120px 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--color-sand);
+  cursor: pointer;
+  padding: 25px 0;
+}
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: var(--transition);
+  color: var(--color-taupe);
+  margin-top: 0;
+}
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  margin-top: 20px;
+}
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Contact */
+.contact-section {
+  background: var(--color-sand);
+  padding: 100px 0;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.contact-info {
+  padding: 60px;
+}
+.contact-details {
+  margin-top: 40px;
+  display: grid;
+  gap: 30px;
+}
+.map-placeholder {
+  background: var(--color-taupe);
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Footer */
+.footer {
+  padding: 60px;
+  text-align: center;
+  border-top: 1px solid var(--color-sand);
 }
