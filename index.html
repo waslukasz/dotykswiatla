@@ -140,7 +140,7 @@
               </div>
 
               <div class="manifesto-quote">
-                "Naszym najważniejszym narzędziem jest obecność".
+                "Naszym najważniejszym narzędziem jest obecność."
               </div>
             </div>
 
@@ -257,44 +257,59 @@
         </div>
       </section>
 
-      <section id="packages" class="packages">
-        <div class="packages-inner">
-          <div class="packages-header">
-            <span class="section-label">Cennik</span>
-            <h2>Inwestycja w Siebie</h2>
-          </div>
-          <div class="packages-grid">
-            <div class="package-card">
-              <h3>Konsultacja</h3>
-              <div class="package-price">
-                <span class="amount">150</span><span class="currency">PLN</span>
-              </div>
-              <p>
-                Analiza stanu zdrowia i dobór spersonalizowanej ścieżki terapii.
-              </p>
-              <button class="package-cta" onclick="handleAction('Konsultacja')">
-                Wybieram
-              </button>
-            </div>
-            <div class="package-card featured">
-              <div class="package-badge">Polecane</div>
+      <section id="packages" class="packages-monolith">
+        <div class="monolith-panel therapy">
+          <div class="monolith-content">
+            <div class="monolith-eyebrow">Proces</div>
+            <h2 class="monolith-title">Powrót <em>do Siebie</em></h2>
+            <div class="monolith-price">1800 <span>PLN</span></div>
+            <p class="monolith-desc">
+              Pakiet 4 wizyt dla osób z przewlekłym stresem i wypaleniem. Reset
+              układu nerwowego.
+            </p>
 
-              <h3>Pakiet Terapii</h3>
-              <div class="package-price">
-                <span class="amount">750</span>
-                <span class="currency">PLN</span>
-              </div>
-              <p>
-                Seria 5 intensywnych spotkań dedykowanych głębokiej regeneracji.
-              </p>
-              <button
-                class="package-cta"
-                onclick="handleAction('Pakiet Terapii')"
-              >
-                Wybieram
-              </button>
-            </div>
+            <ul class="monolith-list">
+              <li>Pełna diagnostyka układu nerwowego</li>
+              <li>Indywidualny plan terapii celowanej</li>
+              <li>Ciągłość procesu i opieka</li>
+              <li>Nauka samoregulacji (do domu)</li>
+            </ul>
+
+            <button
+              class="monolith-btn btn-light"
+              onclick="handleAction('Powrót do Siebie')"
+            >
+              Wybieram Spokój
+            </button>
           </div>
+          <div class="monolith-bg-text">SPOKÓJ</div>
+        </div>
+
+        <div class="monolith-panel aesthetic">
+          <div class="monolith-content">
+            <div class="monolith-eyebrow">Rytuał</div>
+            <h2 class="monolith-title">Rytuał Kobido</h2>
+            <div class="monolith-price">1500 <span>PLN</span></div>
+            <p class="monolith-desc">
+              Pakiet 6 wizyt. Głęboka odnowa, naturalny lifting i relaks mięśni
+              twarzy.
+            </p>
+
+            <ul class="monolith-list">
+              <li>Regularna praca z mięśniami twarzy</li>
+              <li>Trwała poprawa owalu i napięcia</li>
+              <li>Naturalny, zdrowy blask (Glow)</li>
+              <li>Oszczędność względem pojedynczych wizyt</li>
+            </ul>
+
+            <button
+              class="monolith-btn"
+              onclick="handleAction('Rytuał Kobido')"
+            >
+              Wybieram Piękno
+            </button>
+          </div>
+          <div class="monolith-bg-text">BLASK</div>
         </div>
       </section>
       <div style="height: 100vh"></div>

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrollValue = window.scrollY;
 
     // Dodawanie klasy z lekkim marginesem bezpieczeństwa
-    if (scrollValue > 20) {
+    if (scrollValue > 60) {
       navWrapper.classList.add("scrolled");
     } else {
       navWrapper.classList.remove("scrolled");
