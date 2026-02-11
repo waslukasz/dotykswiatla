@@ -1222,14 +1222,170 @@ header {
   } /* Chowanie numeracji na małych ekranach dla czystości */
 }
 
-@media (max-width: 600px) {
-  .faq-trigger {
-    padding: 30px 15px; /* Mniejszy, ale wyczuwalny margines na małych ekranach */
+/* --- CONCIERGE: BOUTIQUE REFINED (FINAL VERSION) --- */
+
+.concierge-boutique {
+  padding: 100px 0;
+  background-color: var(--color-cream);
+}
+
+.concierge-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.concierge-content {
+  background-color: var(--color-olive-dark);
+  padding: 50px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2px;
+  gap: 50px;
+  position: relative;
+}
+
+/* --- LEWA STRONA: TEKST --- */
+.concierge-message {
+  flex: 1.2;
+}
+
+.luxe-label-mini {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-sand);
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.concierge-h {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+  color: #fff;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.concierge-p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 460px;
+  font-weight: 300; /* Szlachetny, lekki tekst bez pogrubień */
+}
+
+/* --- PIONOWY DIVIDER --- */
+.concierge-line {
+  width: 1px;
+  height: 60px; /* Wysokość bazowa */
+  background-color: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  transition:
+    height 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.6s ease;
+}
+
+/* Animacja linii tylko na urządzeniach z myszką */
+@media (hover: hover) {
+  .concierge-content:hover .concierge-line {
+    height: 90px;
+    background-color: var(--color-sand);
   }
-  .faq-body-inner {
-    padding-inline: 15px;
-    padding-left: 15px; /* Na mobile wyrównujemy do lewej dla oszczędności miejsca */
-    padding-bottom: 30px;
+}
+
+/* --- PRAWA STRONA: KONTAKT --- */
+.concierge-contact {
+  flex: 0.8;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent; /* Reset dla mobile */
+  outline: none;
+}
+
+.contact-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-sand);
+  margin-bottom: 8px;
+}
+
+.contact-num {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  color: #fff;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  margin-bottom: 8px;
+  transition: color 0.4s ease;
+}
+
+/* Subtelna zmiana koloru numeru na hover */
+@media (hover: hover) {
+  .concierge-contact:hover .contact-num {
+    color: var(--color-sand);
+  }
+}
+
+.contact-sub-single {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* --- RESPONSYWNOŚĆ (MOBILE) --- */
+@media (max-width: 900px) {
+  .concierge-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 45px 24px;
+    gap: 30px;
+  }
+
+  .concierge-line {
+    width: 40px;
+    height: 1px !important; /* Blokujemy wysokość, by nie "puchła" na tel */
+    background-color: rgba(255, 255, 255, 0.15);
+    margin: 0 auto;
+    transition: none !important; /* Wyłączamy animacje przy dotyku */
+  }
+
+  .concierge-contact {
+    width: 100%;
+    padding: 25px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+
+  /* Feedback po kliknięciu na telefonie */
+  .concierge-contact:active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .contact-num {
+    font-size: 1.5rem;
+    color: var(--color-sand);
+    margin-bottom: 5px;
+  }
+
+  .contact-sub-single {
+    white-space: normal;
+    font-size: 0.65rem;
+    max-width: 220px;
+    line-height: 1.4;
   }
 }
 /* --- SCROLL INDICATOR --- */
