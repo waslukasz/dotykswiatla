@@ -519,6 +519,85 @@ header {
   }
 }
 
+/* --- Subtelny Editorial Ribbon (Mobile) --- */
+@media (max-width: 768px) {
+  .values-bar {
+    /* Używamy nieco głębszego odcienia piasku dla delikatnego kontrastu */
+    background-color: #f0ede6;
+    padding: 70px 0;
+    margin: 20px 0;
+    overflow: hidden; /* Zapewnia, że wystający napis nie zepsuje skrolowania strony */
+    position: relative;
+    border-top: 1px solid rgba(181, 169, 154, 0.2);
+    border-bottom: 1px solid rgba(181, 169, 154, 0.2);
+  }
+
+  .values-bar-inner {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 25px;
+  }
+
+  .values-title-box {
+    border: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: -15px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .values-title-box h2 {
+    font-family: var(--font-serif);
+    /* Wielki napis - wystawanie poza ekran jest stylowe (feeling premium) */
+    font-size: 4.8rem;
+    line-height: 1;
+    color: var(--color-taupe);
+    opacity: 0.25; /* Bardzo blady, by nie bił po oczach */
+    font-style: italic;
+    white-space: nowrap;
+    margin-left: -20px; /* Lekkie przesunięcie w lewo */
+    letter-spacing: -2px;
+  }
+
+  .values-items {
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .v-item {
+    text-align: left;
+    padding-left: 20px;
+    /* Subtelna pionowa linia przy każdym punkcie dla porządku */
+    border-left: 1px solid var(--color-olive);
+  }
+
+  .v-item h3 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-olive-dark);
+    margin-bottom: 6px;
+  }
+
+  .v-item p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-charcoal);
+    opacity: 0.8;
+    max-width: 280px;
+  }
+
+  /* Ukrywamy dividery z desktopu */
+  .v-divider {
+    display: none;
+  }
+}
+
 /* --- ABOUT MANIFESTO - REFINED VERSION --- */
 .about-manifesto {
   padding: 100px 5%;
