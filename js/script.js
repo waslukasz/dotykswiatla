@@ -91,6 +91,53 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 100); // 100ms wystarczy, by animacje ruszyły bez szarpania
     });
   });
+  // --- OBSŁUGA MENU MOBILNEGO ---
+  const mobileToggle = document.querySelector(".mobile-toggle");
+  const navLinks = document.querySelector(".nav-links");
+  const body = document.body;
+
+  if (mobileToggle && navLinks) {
+    // Kliknięcie w hamburger
+    mobileToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      mobileToggle.classList.toggle("active");
+      body.classList.toggle("menu-open");
+    });
+
+    // Zamknięcie menu po kliknięciu w link
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        mobileToggle.classList.remove("active");
+        body.classList.remove("menu-open");
+      });
+    });
+    // --- SCROLL SPY (Podświetlanie menu podczas przewijania) ---
+    const sections = document.querySelectorAll("section[id]");
+
+    function scrollActive() {
+      const scrollY = window.pageYOffset;
+
+      sections.forEach((current) => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 150; // Margines dla nagłówka
+        const sectionId = current.getAttribute("id");
+        const menuLink = document.querySelector(
+          `.nav-links a[href*=${sectionId}]`,
+        );
+
+        if (menuLink) {
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            menuLink.classList.add("active-link");
+          } else {
+            menuLink.classList.remove("active-link");
+          }
+        }
+      });
+    }
+
+    window.addEventListener("scroll", scrollActive);
+  }
 });
 
 function handleAction(type) {
