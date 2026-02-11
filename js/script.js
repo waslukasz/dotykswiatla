@@ -58,6 +58,39 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item) => {
+    const trigger = item.querySelector(".faq-trigger");
+
+    trigger.addEventListener("click", () => {
+      const isActive = item.classList.contains("active");
+
+      // Jeśli klikamy w już otwarte - po prostu zamknij
+      if (isActive) {
+        item.classList.remove("active");
+        return;
+      }
+
+      // Zamykamy inne (płynnie dzięki CSS)
+      faqItems.forEach((el) => el.classList.remove("active"));
+
+      // Otwieramy obecne
+      item.classList.add("active");
+
+      // Płynny scroll bez skakania
+      setTimeout(() => {
+        const offset = 150; // dostosuj do wysokości swojego menu
+        const elementPosition =
+          item.getBoundingClientRect().top + window.pageYOffset;
+
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: "smooth",
+        });
+      }, 100); // 100ms wystarczy, by animacje ruszyły bez szarpania
+    });
+  });
 });
 
 function handleAction(type) {

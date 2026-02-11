@@ -1046,6 +1046,192 @@ header {
   }
 }
 
+/* --- FAQ AURA PREMIUM --- */
+.faq-section {
+  padding: 140px 0;
+  background-color: #f9f7f4; /* Bardzo szlachetny, jasny odcień taupe/kremu */
+  position: relative;
+}
+
+.faq-container {
+  padding-inline: clamp(
+    20px,
+    8vw,
+    60px
+  ); /* Elastyczny margines bezpieczeństwa */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.faq-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 3.8rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  letter-spacing: -0.01em;
+}
+
+/* Accordion - Minimalistyczna lista */
+.faq-accordion {
+  border-top: 1px solid rgba(181, 169, 154, 0.3);
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(181, 169, 154, 0.3);
+  margin: 0;
+}
+
+/* Delikatne podświetlenie całego rzędu po najechaniu */
+.faq-item:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* Dodajemy padding horyzontalny (pudding) */
+  padding: 40px clamp(15px, 4vw, 40px);
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: clamp(15px, 3vw, 30px);
+  transition: background-color 0.4s ease;
+}
+
+.faq-number {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-olive);
+  opacity: 0.6;
+  margin-top: 4px;
+}
+
+.faq-q-text {
+  flex-grow: 1;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+
+/* Ikona PLUS -> X (Cienka i precyzyjna) */
+.faq-icon-wrap {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-line-h,
+.faq-line-v {
+  position: absolute;
+  background-color: var(--color-olive);
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s;
+}
+
+.faq-line-h {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+.faq-line-v {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.faq-item.active .faq-icon-wrap {
+  transform: rotate(45deg); /* Plus staje się X */
+}
+
+/* ULTRA-SMOOTH BODY REVEAL */
+.faq-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  /* Wydłużamy i wygładzamy transition dla zamykania */
+  transition: grid-template-rows 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: grid-template-rows;
+}
+
+.faq-item.active .faq-body {
+  grid-template-rows: 1fr;
+}
+
+.faq-body-inner {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-15px);
+  /* Padding tekstu musi być spójny z triggerem, 
+     dodatkowo zwiększamy lewy padding, by wyrównać tekst do pytania, a nie do numeru */
+  padding-inline: clamp(15px, 4vw, 40px);
+  padding-left: clamp(45px, 8vw, 85px);
+  max-width: 850px;
+  transition:
+    opacity 0.5s ease,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.active .faq-body-inner {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  /* Przy otwieraniu tekst wchodzi z lekkim delayem dla efektu premium */
+  transition:
+    opacity 0.5s ease 0.2s,
+    transform 0.5s ease 0.2s,
+    visibility 0s 0s;
+}
+
+.faq-body-inner p {
+  color: var(--color-taupe);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 80px 0;
+  }
+  .faq-trigger {
+    padding: 30px 0;
+    gap: 15px;
+  }
+  .faq-body-inner {
+    padding-left: 25px;
+  }
+  .faq-number {
+    display: none;
+  } /* Chowanie numeracji na małych ekranach dla czystości */
+}
+
+@media (max-width: 600px) {
+  .faq-trigger {
+    padding: 30px 15px; /* Mniejszy, ale wyczuwalny margines na małych ekranach */
+  }
+  .faq-body-inner {
+    padding-inline: 15px;
+    padding-left: 15px; /* Na mobile wyrównujemy do lewej dla oszczędności miejsca */
+    padding-bottom: 30px;
+  }
+}
 /* --- SCROLL INDICATOR --- */
 .scroll-indicator {
   position: absolute;
