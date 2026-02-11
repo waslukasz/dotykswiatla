@@ -932,6 +932,118 @@ header {
     font-size: 25vw;
     bottom: 20px;
   }
+} /* --- TEAM MONOLITH COMPACT --- */
+.team-monolith-compact {
+  /* Zredukowany padding, by sekcja "weszła" szybciej */
+  padding: 80px 0 100px;
+  background-color: var(--color-warm-white);
+  border-top: 1px solid var(--color-sand);
+}
+
+.team-header-minimal {
+  text-align: center;
+  margin-bottom: 40px; /* Zmniejszona przerwa między nagłówkiem a zdjęciami */
+}
+
+.team-header-minimal h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.v-line-decorator {
+  width: 1px;
+  height: 30px; /* Krótsza kreska */
+  background-color: var(--color-olive);
+  margin: 15px auto 0;
+  opacity: 0.4;
+}
+
+.team-composition {
+  display: flex;
+  justify-content: center;
+  gap: 80px; /* Nieco mniejszy odstęp dla zwartości */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.specialist-profile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.portrait-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* Optymalna szerokość */
+  margin-bottom: 25px; /* Mniejszy odstęp pod zdjęciem */
+}
+
+.portrait-arch {
+  width: 100%;
+  height: 360px; /* Wysokość skrócona, by zmieścić się w jednym ekranie z nav */
+  background-color: var(--color-sand);
+  border-radius: 150px 150px 0 0;
+  transition: var(--transition);
+}
+
+.portrait-tag {
+  position: absolute;
+  top: 30px;
+  right: -10px;
+  background: var(--color-olive);
+  color: white;
+  font-size: 0.6rem;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.portrait-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.portrait-content .bio {
+  font-size: 0.9rem;
+  color: var(--color-taupe);
+  line-height: 1.6;
+  margin-bottom: 15px;
+  max-width: 320px;
+  font-weight: 300;
+}
+
+/* Zakresy pracy jako subtelny, poziomy ciąg */
+.scope-tags {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-olive);
+  opacity: 0.7;
+  border-top: 1px solid var(--color-sand);
+  padding-top: 15px;
+  width: 100%;
+}
+
+/* Kotwica z idealnym marginesem dla nav */
+#team {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 900px) {
+  .team-composition {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .portrait-arch {
+    height: 320px;
+  }
 }
 
 /* --- SCROLL INDICATOR --- */
