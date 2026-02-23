@@ -1119,6 +1119,9 @@ header {
   background-color: var(--color-sand);
   border-radius: 150px 150px 0 0;
   transition: var(--transition);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .portrait-tag {
@@ -1143,12 +1146,11 @@ header {
   font-size: 0.9rem;
   color: var(--color-taupe);
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin: 0px auto 15px auto;
   max-width: 320px;
   font-weight: 300;
 }
 
-/* Zakresy pracy jako subtelny, poziomy ciąg */
 .scope-tags {
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -1158,6 +1160,14 @@ header {
   border-top: 1px solid var(--color-sand);
   padding-top: 15px;
   width: 100%;
+}
+
+.edyta-img {
+  background-image: url(../img/edyta.jpeg);
+}
+
+.katarzyna-img {
+  background-image: url(../img/katarzyna.jpeg);
 }
 
 /* Kotwica z idealnym marginesem dla nav */
