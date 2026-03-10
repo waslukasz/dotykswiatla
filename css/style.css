@@ -1063,178 +1063,169 @@ header {
   }
 }
 
-/* --- TEAM DUO SECTION --- */
+/* --- TEAM DUO SECTION (ALIGNED VERSION) --- */
 .team-duo {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 80px 0;
+  padding: 100px 0;
   background-color: var(--color-warm-white);
   border-top: 1px solid var(--color-sand);
 }
 
 .team-container {
-  width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 5%;
 }
 
-/* Oryginalny Nagłówek */
 .team-header-minimal {
   text-align: center;
   margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .team-header-minimal h2 {
   font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-size: 2.5rem;
   font-weight: 300;
   color: var(--color-charcoal);
-  margin: 10px 0 20px 0;
+  margin: 15px 0;
 }
 
 .team-header-minimal h2 em {
   font-style: italic;
-}
-
-.luxe-label {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 0.75rem;
-  color: var(--color-taupe);
+  color: var(--color-olive);
 }
 
 .v-line-decorator {
   width: 1px;
   height: 50px;
-  background: var(--color-olive);
-  margin: 0 auto;
-  opacity: 0.4;
+  background: linear-gradient(to bottom, var(--color-olive), transparent);
+  margin-top: 10px;
 }
 
-/* Układ siatki */
+/* Siatka o równych wysokościach kolumn */
 .team-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 70px;
+  align-items: stretch; /* Karty będą miały tę samą wysokość */
 }
 
+/* Karta jako kontener Flex */
 .specialist-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  height: 100%;
 }
 
-/* Portrety - Pełny kolor, bez filtrów */
 .portrait-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 350px;
-  margin-bottom: 30px;
-}
-
-.portrait-deco-shape {
-  position: absolute;
-  top: 15px;
-  left: -15px;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-sand);
-  opacity: 0.5;
-  z-index: 1;
+  margin-bottom: 35px;
 }
 
 .portrait-arch {
   position: relative;
-  z-index: 2;
-  height: 440px;
-  border-radius: 180px 180px 0 0;
+  width: 100%;
+  height: 480px; /* Wysokość dopasowana do laptopów i sekcji pakiety */
+  background-color: var(--color-sand);
+  border-radius: 350px 350px 0 0;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+  z-index: 2;
 }
 
-.portrait-arch img {
+/* Animacja Zoom */
+.portrait-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transition: transform 2s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.specialist-card:hover .portrait-img {
+  transform: scale(1.07);
+}
+
+/* Ramka dekoracyjna */
+.portrait-deco-shape {
+  position: absolute;
+  top: 15px;
+  right: -15px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-olive);
+  opacity: 0.15;
+  border-radius: 350px 350px 0 0;
+  z-index: 1;
+}
+
+/* Kontener tekstowy - wyrównuje elementy w pionie */
+.portrait-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Wypełnia dostępną wysokość karty */
+}
+
+.portrait-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+/* Bio zajmuje całą wolną przestrzeń, spychając tagi do dołu */
+.bio {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-taupe);
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+/* Tagi zawsze w jednej linii na dole */
+.scope-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto; /* Magiczne wypchnięcie do dołu */
+}
+
+.scope-tags span {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-olive-dark);
+  padding: 4px 14px;
+  border: 1px solid rgba(122, 139, 110, 0.2);
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
 .portrait-tag {
   position: absolute;
-  bottom: 25px;
+  bottom: 30px;
   right: -10px;
-  z-index: 3;
-  background: var(--color-olive);
+  background-color: var(--color-olive);
   color: white;
-  padding: 8px 18px;
+  padding: 8px 20px;
   font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+  z-index: 3;
 }
 
-/* Teksty */
-.portrait-content h3 {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 15px;
-  color: var(--color-charcoal);
-}
-
-.portrait-content .bio {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--color-taupe);
-  margin-bottom: 25px;
-  max-width: 400px;
-}
-
-.scope-tags {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.scope-tags span {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 5px 14px;
-  border: 1px solid var(--color-sand);
-  border-radius: 40px;
-  color: var(--color-olive-dark);
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 992px) {
-  .team-duo {
-    height: auto;
-    padding: 60px 0;
-  }
+/* RWD */
+@media (max-width: 768px) {
   .team-grid {
     grid-template-columns: 1fr;
-    gap: 70px;
+    gap: 60px;
   }
   .portrait-arch {
-    height: 460px;
+    height: 420px;
   }
-}
-
-@media (max-height: 850px) and (min-width: 993px) {
-  .portrait-arch {
-    height: 360px;
-  }
-  .portrait-content h3 {
-    font-size: 2.2rem;
-  }
-  .team-header-minimal {
-    margin-bottom: 30px;
+  .portrait-content {
+    align-items: center;
+    text-align: center;
   }
 }
 
