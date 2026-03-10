@@ -1061,127 +1061,180 @@ header {
     font-size: 25vw;
     bottom: 20px;
   }
-} /* --- TEAM MONOLITH COMPACT --- */
-.team-monolith-compact {
-  /* Zredukowany padding, by sekcja "weszła" szybciej */
-  padding: 80px 0 100px;
+}
+
+/* --- TEAM DUO SECTION --- */
+.team-duo {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
   background-color: var(--color-warm-white);
   border-top: 1px solid var(--color-sand);
 }
 
-.team-header-minimal {
-  text-align: center;
-  margin-bottom: 40px; /* Zmniejszona przerwa między nagłówkiem a zdjęciami */
-}
-
-.team-header-minimal h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 300;
-  margin-top: 10px;
-}
-
-.v-line-decorator {
-  width: 1px;
-  height: 30px; /* Krótsza kreska */
-  background-color: var(--color-olive);
-  margin: 15px auto 0;
-  opacity: 0.4;
-}
-
-.team-composition {
-  display: flex;
-  justify-content: center;
-  gap: 80px; /* Nieco mniejszy odstęp dla zwartości */
-  max-width: 1100px;
+.team-container {
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 5%;
 }
 
-.specialist-profile {
-  flex: 1;
+/* Oryginalny Nagłówek */
+.team-header-minimal {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.team-header-minimal h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  margin: 10px 0 20px 0;
+}
+
+.team-header-minimal h2 em {
+  font-style: italic;
+}
+
+.luxe-label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.75rem;
+  color: var(--color-taupe);
+}
+
+.v-line-decorator {
+  width: 1px;
+  height: 50px;
+  background: var(--color-olive);
+  margin: 0 auto;
+  opacity: 0.4;
+}
+
+/* Układ siatki */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.specialist-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
+/* Portrety - Pełny kolor, bez filtrów */
 .portrait-wrapper {
   position: relative;
   width: 100%;
-  max-width: 300px; /* Optymalna szerokość */
-  margin-bottom: 25px; /* Mniejszy odstęp pod zdjęciem */
+  max-width: 350px;
+  margin-bottom: 30px;
+}
+
+.portrait-deco-shape {
+  position: absolute;
+  top: 15px;
+  left: -15px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-sand);
+  opacity: 0.5;
+  z-index: 1;
 }
 
 .portrait-arch {
+  position: relative;
+  z-index: 2;
+  height: 440px;
+  border-radius: 180px 180px 0 0;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+}
+
+.portrait-arch img {
   width: 100%;
-  height: 360px; /* Wysokość skrócona, by zmieścić się w jednym ekranie z nav */
-  background-color: var(--color-sand);
-  border-radius: 150px 150px 0 0;
-  transition: var(--transition);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
 }
 
 .portrait-tag {
   position: absolute;
-  top: 30px;
+  bottom: 25px;
   right: -10px;
+  z-index: 3;
   background: var(--color-olive);
   color: white;
-  font-size: 0.6rem;
-  padding: 6px 12px;
-  text-transform: uppercase;
+  padding: 8px 18px;
+  font-size: 0.65rem;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
+/* Teksty */
 .portrait-content h3 {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
-  margin-bottom: 12px;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 15px;
+  color: var(--color-charcoal);
 }
 
 .portrait-content .bio {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--color-taupe);
-  line-height: 1.6;
-  margin: 0px auto 15px auto;
-  max-width: 320px;
-  font-weight: 300;
+  margin-bottom: 25px;
+  max-width: 400px;
 }
 
 .scope-tags {
-  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.scope-tags span {
+  font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--color-olive);
-  opacity: 0.7;
-  border-top: 1px solid var(--color-sand);
-  padding-top: 15px;
-  width: 100%;
+  padding: 5px 14px;
+  border: 1px solid var(--color-sand);
+  border-radius: 40px;
+  color: var(--color-olive-dark);
 }
 
-.edyta-img {
-  background-image: url(../img/edyta.jpeg);
-}
-
-.katarzyna-img {
-  background-image: url(../img/katarzyna.jpeg);
-}
-
-/* Kotwica z idealnym marginesem dla nav */
-#team {
-  scroll-margin-top: 100px;
-}
-
-@media (max-width: 900px) {
-  .team-composition {
-    flex-direction: column;
-    gap: 60px;
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .team-duo {
+    height: auto;
+    padding: 60px 0;
+  }
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 70px;
   }
   .portrait-arch {
-    height: 320px;
+    height: 460px;
+  }
+}
+
+@media (max-height: 850px) and (min-width: 993px) {
+  .portrait-arch {
+    height: 360px;
+  }
+  .portrait-content h3 {
+    font-size: 2.2rem;
+  }
+  .team-header-minimal {
+    margin-bottom: 30px;
   }
 }
 
