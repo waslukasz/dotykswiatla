@@ -1064,16 +1064,18 @@ header {
 }
 
 /* ==========================================================================
-   MODERN LUXURY PRICING STYLES (BOTANICAL OPLOT EDITION)
+   MODERN LUXURY PRICING STYLES (BOTANICAL OPLOT RESPONSIVE)
    ========================================================================== */
 
 .pricing-luxury-section {
-  padding: 130px 20px 60px 20px;
-  background-color: #faf9f6; /* Ciepła, luksusowa kość słoniowej */
+  padding: 120px 0; /* Górny padding dostosowany do sekcji na stronie */
+  background-color: var(--color-cream); /* Spójne tło z Twojego projektu */
   overflow: hidden;
+  position: relative;
 }
 
 .luxury-container {
+  width: 90%;
   max-width: 850px;
   margin: 0 auto;
 }
@@ -1088,11 +1090,10 @@ header {
 
 .luxury-wrap-decorator {
   position: relative;
-  padding: 40px 85px;
+  padding: 30px 70px;
   display: inline-block;
 }
 
-/* Pozycjonowanie warstw pod Twoje własne grafiki roślinne */
 .leaf-layer-back,
 .leaf-layer-front {
   position: absolute;
@@ -1107,54 +1108,39 @@ header {
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Warstwa 1: Pod tekstem (Główny pęd pnącza) */
 .leaf-layer-back {
-  background-image: url("../img/galazka-cennik-pod.png"); /* Umieść plik gałązki-tła w swoim folderze img */
+  background-image: url("../img/galazka-cennik-pod.png");
   z-index: 1;
-  opacity: 0.75;
+  opacity: 0.5;
 }
 
-/* Warstwa 2: Nad tekstem (Subtelne listki wchodzące na litery) */
 .leaf-layer-front {
-  background-image: url("../img/galazka-cennik-nad.png"); /* Umieść plik gałązki-przodu w swoim folderze img */
+  background-image: url("../img/galazka-cennik-nad.png");
   z-index: 3;
-  opacity: 0.95;
+  opacity: 0.8;
 }
 
-/* Środkowa warstwa - napisy */
 .luxury-wrap-decorator h2,
 .luxury-wrap-decorator .luxe-label {
   position: relative;
-  z-index: 2; /* Dokładnie pomiędzy grafikami */
+  z-index: 2;
 }
 
 .pricing-luxury-section .pricing-unified-header h2 {
-  font-size: 3.4rem !important;
-  letter-spacing: 2px;
-  line-height: 1.2;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
-.pricing-unified-header h2 em {
-  transition:
-    color 0.4s ease,
-    letter-spacing 0.4s ease;
+/* Ruch na desktopie */
+@media (hover: hover) {
+  .luxury-wrap-decorator:hover .leaf-layer-back {
+    transform: scale(1.02) rotate(-0.5deg);
+  }
+  .luxury-wrap-decorator:hover .leaf-layer-front {
+    transform: scale(1.03) rotate(0.5deg);
+  }
 }
 
-/* Subtelny ruch gałązek na hoverze nad całkiem nagłówka */
-.luxury-wrap-decorator:hover .leaf-layer-back {
-  transform: scale(1.025) rotate(-0.5deg);
-}
-.luxury-wrap-decorator:hover .leaf-layer-front {
-  transform: scale(1.035) rotate(0.5deg);
-}
-
-.pricing-unified-header:hover h2 em {
-  color: #8c7653;
-  letter-spacing: 4px;
-}
-
-/* --- UKŁAD LISTY I WIERSZY --- */
+/* --- UKŁAD LISTY I WIERSZY (DESKTOP) --- */
 .luxury-list {
   display: flex;
   flex-direction: column;
@@ -1162,7 +1148,7 @@ header {
 
 .luxury-item {
   position: relative;
-  padding: 26px 20px;
+  padding: 24px 20px;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -1173,47 +1159,49 @@ header {
   align-items: flex-end;
   position: relative;
   z-index: 2;
+  gap: 30px;
 }
 
 .luxury-meta {
   display: flex;
   flex-direction: column;
-  max-width: 75%;
+  flex-grow: 1;
+  max-width: 80%;
 }
 
 .luxury-name {
-  font-size: 1.15rem;
-  color: var(--color-charcoal); /* Spójny ze stroną odcień grafitu */
+  font-size: 1.05rem;
+  color: var(--color-charcoal);
   font-weight: 400;
-  transition:
-    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-    color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- SCHLUDNA, SUBTELNA CENA --- */
 .luxury-price {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 300;
-  letter-spacing: 1px;
-  color: #8c7653; /* Szampański, matowy odcień złota */
+  letter-spacing: 0.5px;
+  color: var(
+    --color-olive-dark
+  ); /* Przepiękny stonowany odcień z Twojej palety */
   transition:
     transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
     color 0.3s ease;
+  white-space: nowrap;
 }
 
-/* --- WYRÓŻNIENIE PAKIETÓW (PEŁNA KOMÓRKA) --- */
+/* PAKIETY */
 .luxury-item.luxury-featured {
-  background-color: #f3eee3;
+  background-color: #f2ede4; /* Subtelne, kremowo-piaskowe wypełnienie */
   border-radius: 0px;
 }
 
 .luxury-recommendation {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: var(--color-taupe); /* Twoja systemowa zmienna kolorystyczna taupe */
-  margin-top: 6px;
-  font-weight: 500;
+  color: var(--color-taupe);
+  margin-top: 4px;
+  font-weight: 400;
 }
 
 .luxury-item.luxury-featured::before {
@@ -1221,9 +1209,9 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  width: 3px;
+  width: 2px;
   height: 100%;
-  background-color: #bfa37a;
+  background-color: var(--color-olive);
   opacity: 0;
   transform: scaleY(0);
   transition:
@@ -1231,22 +1219,14 @@ header {
     opacity 0.3s ease;
 }
 
-.luxury-featured .luxury-price {
-  color: #8c7653;
-  font-weight: 400;
-}
-
-/* --- GUSTOWNE MIKROANIMACJE WIERSZY --- */
+/* MIKROANIMACJE LINII (DESKTOP) */
 .luxury-animated-line {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 1px;
-  background-color: var(
-    --color-sand
-  ); /* Twoja systemowa linia rozdzielająca sand */
-  transition: background-color 0.4s ease;
+  background-color: var(--color-sand);
 }
 
 .luxury-animated-line::after {
@@ -1256,111 +1236,101 @@ header {
   left: 50%;
   width: 0;
   height: 1px;
-  background-color: #bfa37a;
+  background-color: var(--color-olive);
   transition:
     width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
     left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.luxury-item:hover {
-  background-color: rgba(181, 169, 154, 0.04);
+@media (hover: hover) {
+  .luxury-item:hover {
+    background-color: rgba(181, 169, 154, 0.04);
+  }
+  .luxury-item:hover .luxury-name {
+    transform: translateX(6px);
+  }
+  .luxury-item:hover .luxury-price {
+    color: var(--color-olive);
+    transform: translateX(-6px);
+  }
+  .luxury-item:hover .luxury-animated-line::after {
+    width: 100%;
+    left: 0;
+  }
+  .luxury-item.luxury-featured:hover {
+    background-color: #eae4d9;
+  }
+  .luxury-item.luxury-featured:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  .luxury-item.luxury-featured:hover .luxury-name {
+    transform: translateX(10px);
+  }
 }
 
-.luxury-item:hover .luxury-name {
-  color: var(--color-charcoal);
-  transform: translateX(6px);
-}
-
-.luxury-item:hover .luxury-price {
-  color: #bfa37a;
-  transform: translateX(-6px);
-}
-
-.luxury-item:hover .luxury-animated-line::after {
-  width: 100%;
-  left: 0;
-}
-
-.luxury-item.luxury-featured:hover {
-  background-color: #ebe4d5;
-}
-
-.luxury-item.luxury-featured:hover::before {
-  opacity: 1;
-  transform: scaleY(1);
-}
-
-.luxury-item.luxury-featured:hover .luxury-name {
-  transform: translateX(10px);
-}
-
-/* --- ULTRA-PREMIUM REZERWACJA CTA --- */
+/* --- REZERWACJA CTA --- */
 .luxury-prestige-cta {
-  margin-top: 80px;
+  margin-top: 60px;
   text-align: center;
-  padding-top: 40px;
-  padding-bottom: 60px;
+  padding-top: 30px;
 }
 
 .prestige-cta-text {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--color-taupe);
-  margin-bottom: 25px;
-  font-weight: 400;
+  margin-bottom: 20px;
 }
 
 .prestige-links-group {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
 }
 
 .prestige-link {
   position: relative;
   display: inline-block;
-  padding: 8px 0;
-  font-size: 1.3rem;
+  padding: 6px 0;
+  font-size: 1.15rem;
   color: var(--color-charcoal);
   text-decoration: none;
   font-weight: 300;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .prestige-separator {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   color: var(--color-sand);
-  font-weight: 300;
   user-select: none;
 }
 
 .link-underline {
   position: absolute;
-  bottom: 4px;
+  bottom: 2px;
   left: 0;
   width: 100%;
   height: 1px;
   background-color: var(--color-charcoal);
   transform: scaleX(0.2);
   transform-origin: bottom left;
-  transition:
-    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-    background-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.prestige-link:hover .link-text {
-  color: #8c7653;
-  transition: color 0.3s ease;
+@media (hover: hover) {
+  .prestige-link:hover .link-text {
+    color: var(--color-olive);
+  }
+  .prestige-link:hover .link-underline {
+    transform: scaleX(1);
+    background-color: var(--color-olive);
+  }
 }
 
-.prestige-link:hover .link-underline {
-  transform: scaleX(1);
-  background-color: #8c7653;
-}
-
-/* --- DEKORATOR PRZEJŚCIA SEKCJI --- */
+/* DEKORATOR PRZEJŚCIA */
 .luxury-section-end {
   width: 100%;
   height: 1px;
@@ -1382,56 +1352,91 @@ header {
   transform: translate(-50%, -50%) rotate(45deg);
   width: 5px;
   height: 5px;
-  background-color: #bfa37a;
+  background-color: var(--color-taupe);
 }
 
-/* --- RESPONDYWNOŚĆ --- */
-@media (max-width: 640px) {
+/* ==========================================================================
+   DEDYKOWANE POPRAWKI DLA TELEFONÓW (PERFEKCYJNY RWD MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
   .pricing-luxury-section {
-    padding: 100px 0px 40px 0px;
+    padding: 80px 0 40px 0; /* Zwarte marginesy pionowe */
   }
+
   .luxury-container {
-    padding: 0 15px;
+    width: 100%;
+    padding: 0 20px; /* Margines bezpieczeństwa od boków ekranu */
   }
-  .luxury-wrap-decorator {
-    padding: 25px 35px;
-  }
-  /* Na telefonach automatycznie chowamy wierzchnie pnącza, by napisy były czyste i łatwo klikalne */
+
+  /* Wyłączamy gałązki wokół nagłówka – na telefonie stawiamy na czystość */
+  .leaf-layer-back,
   .leaf-layer-front {
-    display: none;
+    display: none !important;
   }
+
+  .luxury-wrap-decorator {
+    padding: 0; /* Likwidacja zbędnych pustych przestrzeni */
+  }
+
   .pricing-unified-header h2 {
-    font-size: 2.3rem !important;
+    font-size: 2.4rem !important; /* Spójna wielkość mobilna h2 z Twojego pliku */
   }
+
+  /* Układ wiersza usługi – idealne wyrównanie w jednej linii */
   .luxury-item {
-    padding: 22px 10px;
+    padding: 20px 10px; /* Kompaktowe odstępy pionowe */
   }
+
   .luxury-flex-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .luxury-meta {
-    max-width: 100%;
-  }
-  .luxury-price {
-    align-self: flex-end;
-    margin-top: -4px;
-  }
-  .luxury-item:hover .luxury-name,
-  .luxury-item:hover .luxury-price,
-  .luxury-item.luxury-featured:hover .luxury-name {
-    transform: none;
-  }
-  .prestige-links-group {
-    flex-direction: column;
+    align-items: baseline; /* Cena idealnie równa z linią tekstu usługi */
     gap: 15px;
   }
-  .prestige-separator {
-    display: none;
+
+  .luxury-meta {
+    max-width: 75%;
   }
+
+  .luxury-name {
+    font-size: 0.95rem; /* Delikatniejsza czcionka, by zmieścić długie nazwy */
+    line-height: 1.4;
+  }
+
+  .luxury-price {
+    font-size: 1rem; /* Schludna, nienachalna cena */
+    text-align: right;
+  }
+
+  /* Wyróżnione pakiety na mobile – pełny, luksusowy monolit bez marginesów */
+  .luxury-item.luxury-featured {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 5px 0;
+  }
+
+  /* Linki kontaktowe ułożone pionowo dla wygody klikania kciukiem */
+  .luxury-prestige-cta {
+    margin-top: 50px;
+  }
+
+  .prestige-links-group {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .prestige-separator {
+    display: none; /* Ukrywamy ukośnik */
+  }
+
   .prestige-link {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  .link-underline {
+    transform: scaleX(0.4); /* Wyraźniejsza kreseczka podpowiedzi na mobile */
+    left: 50%;
+    transform: translateX(-50%) scaleX(0.4);
   }
 }
 
@@ -2228,7 +2233,7 @@ header {
 /* --- SCROLL INDICATOR --- */
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
