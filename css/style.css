@@ -643,18 +643,24 @@ header {
   min-height: 450px !important;
 }
 
-/* --- TELEFON (PROSTE ROZWIĄZANIE) --- */
+/* --- TELEFON (POPRAWIONE ROZWIĄZANIE) --- */
 @media (max-width: 900px) {
-  /* Ignorujemy wysokość rodziców i zmuszamy sam obrazek do bycia dużym i wysokim */
-  .main-img-placeholder img {
-    position: relative !important; /* Reset pozycjonowania na telefonie */
-    height: 70vh !important; /* Zdjęcie zajmie aż 70% wysokości ekranu telefonu */
-    min-height: 450px !important; /* Gwarancja, że nie zejdzie poniżej 450px */
+  .main-img-placeholder {
+    width: 100% !important;
+    height: 60vh !important; /* Kontener zajmie 60% wysokości ekranu telefonu */
+    min-height: 450px !important; /* Gwarancja minimalnej wysokości */
+    position: relative !important;
+    overflow: hidden !important;
+    margin-bottom: 30px !important; /* Odstęp od tekstu poniżej */
   }
 
-  .main-img-placeholder {
-    height: auto !important;
-    margin-bottom: 30px !important; /* Odstęp od tekstu poniżej */
+  .main-img-placeholder img {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Obrazek idealnie wypełni całą wysokość i szerokość kontenera */
   }
 }
 
