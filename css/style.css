@@ -623,55 +623,41 @@ header {
   z-index: 2;
 }
 
-/* ==========================================================================
-   PERFEKCYJNE WYPEŁNIENIE CAŁEJ WYSOKOŚCI (FULL HEIGHT IMAGE FILL)
-   ========================================================================== */
-
-/* Wymuszamy, aby kontener nadrzędny, w którym znajduje się zdjęcie, 
-   rozciągał się i dawał zdjęciu przestrzeń do zapełnienia wysokości */
-.about-section,
-.about-section .grid-container,
-.about-section .container {
+/* --- DESKTOP --- */
+.about-manifesto .manifesto-container {
   display: flex !important;
-  align-items: stretch !important; /* Zmusza wszystkie kolumny do równej, maksymalnej wysokości */
+  align-items: stretch !important;
 }
 
-/* Gwarancja, że placeholder weźmie pełną wysokość, jaką daje mu sekcja rodzica */
 .main-img-placeholder {
   width: 100% !important;
-  max-width: 100% !important;
-  height: 100% !important; /* KLUCZ: Wypełnienie 100% wysokości nadrzędnej kolumny */
-  min-height: 500px; /* Zabezpieczenie minimalnej wysokości na średnich ekranach */
-  aspect-ratio: auto !important; /* Wyłączamy sztywną proporcję, bo wysokość ma teraz priorytet */
+  height: 100% !important;
+  min-height: 500px;
   position: relative !important;
   overflow: hidden !important;
 }
 
-/* Obrazek wewnątrz rozciąga się i idealnie pokrywa cały obszar kontenera */
 .main-img-placeholder img {
   position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important; /* Idealne wyśrodkowanie kadru */
+  top: 0;
+  left: 0;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* Kadrowanie i wypełnienie bez deformacji */
-  object-position: center center !important;
+  object-fit: cover !important;
 }
 
-/* Specjalne dostosowanie pod mniejsze ekrany (tablety i telefony) */
-@media (max-width: 768px) {
-  .about-section,
-  .about-section .grid-container,
-  .about-section .container {
-    flex-direction: column !important; /* Łamanie do pionu na telefonie */
+/* --- TELEFON (PROSTE ROZWIĄZANIE) --- */
+@media (max-width: 900px) {
+  /* Ignorujemy wysokość rodziców i zmuszamy sam obrazek do bycia dużym i wysokim */
+  .main-img-placeholder img {
+    position: relative !important; /* Reset pozycjonowania na telefonie */
+    height: 70vh !important; /* Zdjęcie zajmie aż 70% wysokości ekranu telefonu */
+    min-height: 450px !important; /* Gwarancja, że nie zejdzie poniżej 450px */
   }
 
   .main-img-placeholder {
-    height: 60vh !important; /* Na telefonie zdjęcie zajmie dokładnie 60% wysokości ekranu użytkownika */
-    min-height: 350px !important;
-    width: 100% !important;
-    margin-bottom: 25px !important; /* Odstęp od tekstu poniżej */
+    height: auto !important;
+    margin-bottom: 30px !important; /* Odstęp od tekstu poniżej */
   }
 }
 
