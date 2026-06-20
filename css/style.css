@@ -639,28 +639,29 @@ header {
 
 .main-img-placeholder img {
   position: relative !important;
-  height: 70vh !important;
+  height: 100%;
   min-height: 450px !important;
 }
 
-/* --- TELEFON (POPRAWIONE ROZWIĄZANIE) --- */
+/* --- TELEFON (PEŁNA WYSOKOŚĆ I UCIĘTE BOKI) --- */
 @media (max-width: 900px) {
   .main-img-placeholder {
     width: 100% !important;
-    height: 60vh !important; /* Kontener zajmie 60% wysokości ekranu telefonu */
-    min-height: 450px !important; /* Gwarancja minimalnej wysokości */
+    height: 65vh !important; /* Wymuszona wysokość kontenera na mobile (np. 65% ekranu) */
+    min-height: 450px !important; /* Bezpiecznik minimalnej wysokości */
     position: relative !important;
     overflow: hidden !important;
-    margin-bottom: 30px !important; /* Odstęp od tekstu poniżej */
+    margin-bottom: 30px !important;
   }
 
   .main-img-placeholder img {
-    position: absolute !important;
+    position: absolute !important; /* Wracamy do absolutnego pozycjonowania względem kontenera */
     top: 0;
     left: 0;
     width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important; /* Obrazek idealnie wypełni całą wysokość i szerokość kontenera */
+    height: 100% !important; /* Wypełnia całe 100% wysokości kontenera (czyli 65vh) */
+    object-fit: cover !important; /* KLUCZ: Wypełnia przestrzeń i idealnie docina boki bez zniekształceń */
+    object-position: center !important; /* Kadruje do środka */
   }
 }
 
