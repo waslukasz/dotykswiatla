@@ -623,18 +623,56 @@ header {
   z-index: 2;
 }
 
-/* Placeholder dla zdjęcia, jeśli jeszcze go nie masz */
-.main-img-placeholder {
-  width: 100%;
-  height: 500px;
-  background-color: var(--color-sand);
-  overflow: hidden;
+/* ==========================================================================
+   PERFEKCYJNE WYPEŁNIENIE CAŁEJ WYSOKOŚCI (FULL HEIGHT IMAGE FILL)
+   ========================================================================== */
+
+/* Wymuszamy, aby kontener nadrzędny, w którym znajduje się zdjęcie, 
+   rozciągał się i dawał zdjęciu przestrzeń do zapełnienia wysokości */
+.about-section,
+.about-section .grid-container,
+.about-section .container {
+  display: flex !important;
+  align-items: stretch !important; /* Zmusza wszystkie kolumny do równej, maksymalnej wysokości */
 }
 
+/* Gwarancja, że placeholder weźmie pełną wysokość, jaką daje mu sekcja rodzica */
+.main-img-placeholder {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important; /* KLUCZ: Wypełnienie 100% wysokości nadrzędnej kolumny */
+  min-height: 500px; /* Zabezpieczenie minimalnej wysokości na średnich ekranach */
+  aspect-ratio: auto !important; /* Wyłączamy sztywną proporcję, bo wysokość ma teraz priorytet */
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Obrazek wewnątrz rozciąga się i idealnie pokrywa cały obszar kontenera */
 .main-img-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important; /* Idealne wyśrodkowanie kadru */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Kadrowanie i wypełnienie bez deformacji */
+  object-position: center center !important;
+}
+
+/* Specjalne dostosowanie pod mniejsze ekrany (tablety i telefony) */
+@media (max-width: 768px) {
+  .about-section,
+  .about-section .grid-container,
+  .about-section .container {
+    flex-direction: column !important; /* Łamanie do pionu na telefonie */
+  }
+
+  .main-img-placeholder {
+    height: 60vh !important; /* Na telefonie zdjęcie zajmie dokładnie 60% wysokości ekranu użytkownika */
+    min-height: 350px !important;
+    width: 100% !important;
+    margin-bottom: 25px !important; /* Odstęp od tekstu poniżej */
+  }
 }
 
 .decorative-frame {
