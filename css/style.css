@@ -647,21 +647,21 @@ header {
 @media (max-width: 900px) {
   .main-img-placeholder {
     width: 100% !important;
-    height: 65vh !important; /* Wymuszona wysokość kontenera na mobile (np. 65% ekranu) */
-    min-height: 450px !important; /* Bezpiecznik minimalnej wysokości */
+    height: 70vh !important; /* Ustawia wysokość na 70% wysokości całego ekranu smartfona */
+    min-height: 450px !important; /* Zapobiega zbytniemu spłaszczeniu na niskich ekranach */
     position: relative !important;
-    overflow: hidden !important;
+    overflow: hidden !important; /* Obcina wszystko co wystaje po bokach */
     margin-bottom: 30px !important;
   }
 
   .main-img-placeholder img {
-    position: absolute !important; /* Wracamy do absolutnego pozycjonowania względem kontenera */
-    top: 0;
-    left: 0;
+    position: absolute !important; /* Wracamy do absolutnego pozycjonowania */
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
-    height: 100% !important; /* Wypełnia całe 100% wysokości kontenera (czyli 65vh) */
-    object-fit: cover !important; /* KLUCZ: Wypełnia przestrzeń i idealnie docina boki bez zniekształceń */
-    object-position: center !important; /* Kadruje do środka */
+    height: 100% !important; /* Wypełnia równe 100% wysokości rodzica (czyli 70vh) */
+    object-fit: cover !important; /* Powiększa obraz zachowując proporcje i ucina boki */
+    object-position: center !important; /* Środkuje kadr zdjęcia */
   }
 }
 
