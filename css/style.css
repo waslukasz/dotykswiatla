@@ -29,6 +29,10 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Texture Overlay */
 body::before {
   content: "";
